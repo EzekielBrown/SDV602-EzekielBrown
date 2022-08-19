@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 import os.path
 
 
-# -- Layouts that will be displayed --
+# -- Different screen layouts that will be displayed --
 login_layout = [
     [sg.Text("Username"), sg.InputText(key='-USERNAME-')],
     [sg.Text("Password"), sg.InputText(password_char="*", key='-PASSWORD-')],
@@ -50,20 +50,18 @@ while True:
         window['-HOMEBUTTON-'].update(visible=True)
         window['-DATABUTTON-'].update(visible=True)
         window['-GRAPHBUTTON-'].update(visible=True)
-        print("This is the Home Page")
 
     if event == '-DATABUTTON-': 
         window[f'-COL{layout}-'].update(visible=False)
         layout = 3
         window[f'-COL{layout}-'].update(visible=True)
         window['-TITLE-'].update('Data')
-        print("This is the Data Page")
 
     if event == '-GRAPHBUTTON-': 
         window[f'-COL{layout}-'].update(visible=False)
         layout = 4
         window[f'-COL{layout}-'].update(visible=True)
         window['-TITLE-'].update('Graph')
-        print("This is the Graph Page")
+
 
 window.close()
