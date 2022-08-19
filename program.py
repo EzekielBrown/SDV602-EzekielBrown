@@ -10,7 +10,7 @@ login_layout = [
 ]
 
 home_layout = [
-    [sg.Text("Welcome to the home screen\nThis Application will blah blah")]
+    [sg.Text("Welcome to the home screen\nThis Application will...")]
 ]
            
 
@@ -26,7 +26,7 @@ graph_layout = [
 
 # -- Create the Layout that will be display --
 layout = [
-    [sg.Text('Login', key='-TITLE-')],
+    [sg.Text('Login', key='-TITLE-' )],
     [sg.Button('Home', key='-HOMEBUTTON-', visible=False), sg.Button('Data', key='-DATABUTTON-', visible=False), sg.Button('Graph', key='-GRAPHBUTTON-', visible=False)],
     [sg.Column(login_layout, key='-COL1-'), sg.Column(home_layout, visible=False, key='-COL2-'), sg.Column(data_layout, visible=False, key='-COL3-'), sg.Column(graph_layout, visible=False, key='-COL4-')],
 ]
