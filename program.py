@@ -50,20 +50,20 @@ while True:
         window['-HOMEBUTTON-'].update(visible=True)
         window['-DATABUTTON-'].update(visible=True)
         window['-GRAPHBUTTON-'].update(visible=True)
-        print("Home Page")
+        print("This is the Home Page")
 
     if event == '-DATABUTTON-': 
         window[f'-COL{layout}-'].update(visible=False)
         layout = 3
         window[f'-COL{layout}-'].update(visible=True)
         window['-TITLE-'].update('Data')
-        print("Data Page")
+        print("This is the Data Page")
 
     if event == '-GRAPHBUTTON-': 
         window[f'-COL{layout}-'].update(visible=False)
         layout = 4
         window[f'-COL{layout}-'].update(visible=True)
         window['-TITLE-'].update('Graph')
-        print("Graph Page")
+        print("This is the Graph Page")
 
 window.close()
