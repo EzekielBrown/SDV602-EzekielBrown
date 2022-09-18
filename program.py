@@ -1,67 +1,36 @@
 import PySimpleGUI as sg
 import os.path
 
+sg.theme('DarkGrey1')
+col1 =[
+        [sg.Button(button_text="Change Chart Settings") ],
+        [sg.Button(button_text="Pan") ],
+        [sg.Button(button_text="Update") ]
+        ]
 
-# -- Different screen layouts that will be displayed --
-login_layout = [
-    [sg.Text("Username"), sg.InputText(key='-USERNAME-')],
-    [sg.Text("Password"), sg.InputText(password_char="*", key='-PASSWORD-')],
-    [sg.Button("Login"), sg.Button("Close")],
-]
-
-home_layout = [
-    [sg.Text("Welcome to the home screen\nThis Application will...")]
-]
-           
-
-data_layout = [
-    [sg.Text('Current Data Loaded:')],
-    [sg.Text('\nLoad Data')],
-    [sg.InputText(), sg.FolderBrowse()],
-]
-
-graph_layout = [
-    [sg.Listbox(values=[], size=(40,20)), sg.VSeperator(), sg.Graph(canvas_size=(400, 400), graph_bottom_left=(0, 0), graph_top_right=(400, 400))]
-]
-
-# -- Create the Layout that will be display --
 layout = [
-    [sg.Text('Login', key='-TITLE-' )],
-    [sg.Button('Home', key='-HOMEBUTTON-', visible=False), sg.Button('Data', key='-DATABUTTON-', visible=False), sg.Button('Graph', key='-GRAPHBUTTON-', visible=False)],
-    [sg.Column(login_layout, key='-COL1-'), sg.Column(home_layout, visible=False, key='-COL2-'), sg.Column(data_layout, visible=False, key='-COL3-'), sg.Column(graph_layout, visible=False, key='-COL4-')],
-]
+    [sg.Text('EXAMPLE WINDOW')],
+    [sg.Button('New Window')],
+    [sg.InputText(), sg.FolderBrowse()],
+    [sg.Graph(canvas_size=(400, 400), graph_bottom_left=(0, 0), graph_top_right=(400, 400)), sg.VSeperator(), sg.Frame(layout=col1, title='Graph')],
+    [sg.Text('Table Infomation')],
+    [sg.Table(values=[['1', '2', '3', '4'], ['a', 'b', 'c', 'd'], ['1', '2', '3', '4'], ['a', 'b', 'c', 'd']], headings=['col1', 'col2', 'col3', 'col4'], max_col_width=25, auto_size_columns=False, justification='right', num_rows=4, alternating_row_color='lightblue', key='-TABLE-', row_height=15, hide_vertical_scroll=False, enable_events=True, bind_return_key=True, col_widths=[10, 10, 10, 10], tooltip='This is a table')],
+    [sg.Output(size=(80, 10), font=('Helvetica 10'))],
+          [sg.Multiline(size=(80, 3), enter_submits=False, key='-QUERY-', do_not_clear=False),
+           sg.Button('SEND', button_color=(sg.YELLOWS[0], sg.BLUES[0]), bind_return_key=True),]
+    ]
 
 
-window = sg.Window('Data + Graph Viewer', layout,)
+window =sg.Window("Data Explorer",layout)
 
-layout = 1  # The current visible layout
+
 while True:
-    event, values = window.read()
-    print(event, values)
-    if event in (None, 'Close'):
-        print("Close")
+    event, value = window.read()
+    if event in (sg.WIN_CLOSED, 'EXIT'):
         break
-
-    if event == '-HOMEBUTTON-' or 'login':
-        window[f'-COL{layout}-'].update(visible=False)
-        layout = 2
-        window[f'-COL{layout}-'].update(visible=True)
-        window['-TITLE-'].update('Home')
-        window['-HOMEBUTTON-'].update(visible=True)
-        window['-DATABUTTON-'].update(visible=True)
-        window['-GRAPHBUTTON-'].update(visible=True)
-
-    if event == '-DATABUTTON-': 
-        window[f'-COL{layout}-'].update(visible=False)
-        layout = 3
-        window[f'-COL{layout}-'].update(visible=True)
-        window['-TITLE-'].update('Data')
-
-    if event == '-GRAPHBUTTON-': 
-        window[f'-COL{layout}-'].update(visible=False)
-        layout = 4
-        window[f'-COL{layout}-'].update(visible=True)
-        window['-TITLE-'].update('Graph')
+    if event == 'SEND':
+        query = value['-QUERY-'].rstrip()
+        print('User: {}'.format(query), flush=True)
 
 
-window.close()
+window.close()  
