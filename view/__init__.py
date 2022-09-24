@@ -1,1 +1,1 @@
-__all__ = ['data_view']
+__all__ = ['data_view', 'view_layout']
