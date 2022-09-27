@@ -4,6 +4,7 @@ import PySimpleGUI as sg
 
 import controller.input_controller as input_controller
 import controller.header_controller as header_controller
+import controller.graph_controller as graph_controller
 
 ### Input View ###
 def row_input_data(self):
@@ -11,7 +12,7 @@ def row_input_data(self):
         self.components['data_file_name'] = sg.Text('No data')
         self.components['input_browse'] = sg.FolderBrowse('Browse')
         self.components['input_load'] = sg.Button('Load Data', key='-LOADDATA')
-        self.components['input_data'] = sg.Combo(['Australia','Austria', 'Azerbaijan'], key='-INPUTDATA-', enable_events=True)
+        self.components['input_data'] = sg.Combo(['Australia','Austria', 'Azerbaijan', 'Bahrain', 'Belgium', 'Canada', 'Emilia Romagna', 'France', 'Great Britian', 'Hungary', 'Italy', 'Miami', 'Monaco', 'Netherlands', 'Saudi Arabia', 'Spain'],enable_events=True)
 
         ### Return ###
         return [
@@ -61,11 +62,10 @@ def row_graph_settings(self):
 def row_chat_box(self):
         self.components['outputchat'] = sg.Output(size=(30, 10))
         self.components['sendbutton'] = sg.Button('Send')
-        self.components['inputchat'] = sg.Multiline('Input Chat',  enter_submits=False, key='-QUERY-', do_not_clear=False)
+        self.components['inputchat'] = sg.Multiline('Input Chat', size=(10, 1),  enter_submits=False, key='-QUERY-', do_not_clear=False)
 
         ### Return ###
         return [
             [self.components['outputchat']],
             [self.components['inputchat'], self.components['sendbutton']]     
         ]
-    

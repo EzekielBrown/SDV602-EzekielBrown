@@ -9,6 +9,8 @@ matplotlib.use('TkAgg')
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import matplotlib.pyplot as plt
+import csv
+from matplotlib.ticker import MaxNLocator
 
 ### Custom ###
 import view.view_layout as vl
@@ -33,15 +35,12 @@ class DataView(object):
         sg.theme('DarkGrey1')      
         ### Layout ###
 
-        self.components['canvas'] = sg.Canvas(size=(400, 400))
-        self.components['test'] = sg.Text('Test')
-        self.components['test2'] = sg.Text('Test2')
+        self.components['canvas'] = sg.Canvas(size=(400, 400), key='-CANVAS-', background_color='white')
         self.components['row_input'] = sg.Frame('Input Data', vl.row_input_data(self))
         self.components['row_settings'] = sg.Frame('Graph Settings', vl.row_graph_settings(self))
         self.components['row_chat'] = sg.Frame('Chat', vl.row_chat_box(self))
 
         col1 = [
-            [self.components['test']],
             [self.components['row_input']],
             [self.components['row_settings']],
             [self.components['row_chat']]
@@ -58,6 +57,9 @@ class DataView(object):
                 [vl.row_header(self)],
                 [self.components['col_1'], self.components['col_2']]
                 ]]
+    
+
+
 
     def layout_show(self):
         self.window = sg.Window('Data View', self.layout, finalize=True)
