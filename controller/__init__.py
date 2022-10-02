@@ -1,1 +1,0 @@
-__all__ = ['chat_controller', 'data_controller', 'graph_controller', 'input_controller', 'table_controller', 'view_controller']

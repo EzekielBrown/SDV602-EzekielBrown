@@ -1,12 +1,12 @@
 ### Import ###
 import sys
 sys.dont_write_bytecode = True
-from view.data_view import DataView
+from view import View
 
 ### Main ###
 
 if __name__ == '__main__':
-    app = DataView()
+    app = View()
 
     app.layout_build()
     app.layout_show()
