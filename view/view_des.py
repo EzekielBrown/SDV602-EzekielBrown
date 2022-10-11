@@ -2,17 +2,20 @@
 import sys
 sys.dont_write_bytecode = True
 import PySimpleGUI as sg
+import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('TkAgg')
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 import os
-
 
 ### Custom Imports ###
 import controller.ctrl_des as ctrl
+
+'''
+The View for the design screens.
+'''
 
 ### Main Class ###
 class DataView(object):
@@ -26,7 +29,7 @@ class DataView(object):
         self.data_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "\data"
     
     def layout_build(self, **kwargs):
-         ### Theme ###
+        ### Theme ###
         theme_dict = {'BACKGROUND': '#2B475D',
                     'TEXT': '#FFFFFF',
                     'INPUT': '#F2EFE8',
@@ -42,28 +45,32 @@ class DataView(object):
         BORDER_COLOR = '#C7D5E0'
         DARK_HEADER_COLOR = '#1B2838'
 
+        ### Header Components ###
         header = [
             [sg.Text('Welcome {user}', font='Any 20', background_color=DARK_HEADER_COLOR, enable_events=True, grab=False), sg.Push(background_color=DARK_HEADER_COLOR)],
         ]
-
         self.components['header'] = sg.Frame('', header,   pad=(0,0), background_color=DARK_HEADER_COLOR,  expand_x=True, border_width=0, grab=True)
-
         self.components['new_button'] = sg.B('New DES')
         self.controls += [ctrl.new_button]
         self.components['exit_button'] = sg.B('Exit')
         self.controls += [ctrl.exit_button]
 
+        ### Input Components ###
+
         self.components['figure_select'] =  sg.B('Open CSV')
         self.components['input_label'] = sg.T('Input                                               ', font='Any 12', background_color=DARK_HEADER_COLOR, enable_events=True, grab=False)
 
+        ### Output Components ###
         self.components['canvas'] = sg.Canvas(size=(650, 500), key='-CANVAS-')
         self.components['canvas_label'] = sg.T('Data Visualization                                                                                                                                ', font='Any 12', background_color=DARK_HEADER_COLOR, enable_events=True, grab=False)
 
+        ### Chat Components ###
         self.components['chat_label'] = sg.T('Chat                                               ', font='Any 12', background_color=DARK_HEADER_COLOR, enable_events=True, grab=False)
         self.components['chat_input'] = sg.I('Type your message...', size=(20, 1))
         self.components['send_button'] = sg.B('Send')
         self.components['chat_log'] = sg.Multiline('Input Chat', size=(30, 5),  enter_submits=False, key='-QUERY-', do_not_clear=False)
 
+        ### Extra Components ###
         self.components['blank'] = sg.T('', background_color=BORDER_COLOR)
         
 
@@ -84,6 +91,7 @@ class DataView(object):
         self.components['column1'] = sg.Column(col1, background_color=BORDER_COLOR)
         self.components['column2'] = sg.Column(col2, background_color=BORDER_COLOR)
 
+        ### DES Layout ###
         self.layout = [
             [self.components['header']],
             [self.components['new_button'], self.components['exit_button']],

@@ -2,15 +2,17 @@
 ## Introduction
 This program is created by Ezekiel Brown for an assessment for sdv602.
 
-This program uses "Fast F1" lap time data and displays the infomation with graphs. Authorised users will be able to use the program with a login and be able to comment on data sets.
+This program is for data analysis of the F1 drivers championship through the years displayed using graphs.
 
-## Usage
+## Features
 
-The graph displays each drivers fast lap and shows how fast they are throughout that lap.
+* Login System
+* CSV To Graph data
+* MVC Architecture
+* Multiple Forms
+* Multiple Users
+* Chat Functionality
 
-## To Be Done
 
-- MVC architecture pattern
-- Login
-- Chat functionality
-- Driver Selection
+
+

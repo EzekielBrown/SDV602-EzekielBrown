@@ -6,6 +6,9 @@ import PySimpleGUI as sg
 ### Custom Imports ###
 import controller.ctrl_login as ctrl
 
+'''
+The View for the login screen.
+'''
 
 ### Main Class ###
 class LoginView(object):  
@@ -33,6 +36,8 @@ class LoginView(object):
         BORDER_COLOR = '#C7D5E0'
         DARK_HEADER_COLOR = '#1B2838'
 
+
+        ### Login Components ###
         header = [
             [sg.Text('Welcome', font='Any 20', background_color=DARK_HEADER_COLOR, enable_events=True, grab=False), sg.Push(background_color=DARK_HEADER_COLOR)],
         ]
@@ -48,6 +53,7 @@ class LoginView(object):
         self.components['exit_button'] = sg.B('Exit')
         self.controls += [ctrl.exit_button]
         
+        ### Login Layout ###
         self.layout = [
             [self.components['header']],
             [self.components['blank']],
