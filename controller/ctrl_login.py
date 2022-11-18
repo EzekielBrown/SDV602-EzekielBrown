@@ -10,17 +10,17 @@ def login_button(event, values, state):
     
     keep_going = True
     if event == 'Log In':
-        print("Authentication Login")
+        print("Authenticating Login")
 
         from model.user_manager import UserManager
         a_user_manager = UserManager()
 
         user_name = values['User']
         password = values['Password']
-        print(f"Got User = {user_name} , Password = {password} - just testing")
+        print(f"Logging in {user_name}...")
 
         login_result = a_user_manager.login(user_name,password)
-        print(f"Got login result: {login_result}")
+        print(f"{login_result}")
 
         if login_result == "Login Success":
             UserManager.current_screen ="A TEST"
