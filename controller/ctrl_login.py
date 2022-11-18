@@ -10,7 +10,7 @@ def login_button(event, values, state):
     
     keep_going = True
     if event == 'Log In':
-        print("Got login - just testing")
+        print("Authentication Login")
 
         from model.user_manager import UserManager
         a_user_manager = UserManager()
@@ -37,8 +37,10 @@ def login_button(event, values, state):
 
 ### Exit Button Function For Login screen###
 def exit_button(event, values, state):
+
     keep_going = True
     if event in (sg.WIN_CLOSED, 'Exit'):
+        print("Closing Application")
         keep_going = False
     else:
         keep_going = True
@@ -53,17 +55,17 @@ def register_button(event, values, state):
     
     keep_going = True
     if event == "Register":   
-        print("Got Register - just testing")
+        print("Authentication Registeration")
         
         from model.user_manager import UserManager
         a_user_manager = UserManager()
 
         user_name = values['User']
         password = values['Password']
-        print(f"Got User = {user_name} , Password = {password} - just testing")
+        print(f"Got User = {user_name} , Password = {password}")
         
         register_result = a_user_manager.register(user_name,password)
-        print(f"REGISTER RESULT {register_result}")
+        print(f"{register_result}")
 
     else:
         keep_going = True

@@ -19,6 +19,7 @@ def new_button(event, values, state):
 
     keep_going = True
     if event == 'New DES':
+        print("New DES")
         app = DataView()
 
         app.layout_build()

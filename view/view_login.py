@@ -66,6 +66,7 @@ class LoginView(object):
         
     def layout_show(self):
         if self.layout != []:
+            print("Login Screen")
             self.window = sg.Window('Login', self.layout, finalize=True, margins=(0,0), background_color="#C7D5E0", no_titlebar=False, resizable=True, right_click_menu=sg.MENU_RIGHT_CLICK_EXIT)
             
     def layout_input(self):

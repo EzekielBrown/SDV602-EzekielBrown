@@ -121,3 +121,8 @@ class UserManager(object):
 
         return result
 
+    def get_user(self):
+        return UserManager.current_user
+
+    def get_chat_log(self):
+        return UserManager.chat_list

@@ -46,9 +46,14 @@ class DataView(object):
         BORDER_COLOR = '#C7D5E0'
         DARK_HEADER_COLOR = '#1B2838'
 
+        from model.user_manager import UserManager
+        user = UserManager().get_user()
+
+
         ### Header Components ###
+
         header = [
-            [sg.Text('Welcome {user}', font='Any 20', background_color=DARK_HEADER_COLOR, enable_events=True, grab=False), sg.Push(background_color=DARK_HEADER_COLOR)],
+            [sg.Text(f'Welcome {user}', font='Any 20', background_color=DARK_HEADER_COLOR, enable_events=True, grab=False), sg.Push(background_color=DARK_HEADER_COLOR)],
         ]
         self.components['header'] = sg.Frame('', header,   pad=(0,0), background_color=DARK_HEADER_COLOR,  expand_x=True, border_width=0, grab=True)
         self.components['new_button'] = sg.B('New DES')
@@ -67,8 +72,9 @@ class DataView(object):
 
         ### Chat Components ###
         self.components['chat_label'] = sg.T('Chat                                               ', font='Any 12', background_color=DARK_HEADER_COLOR, enable_events=True, grab=False)
-        self.components['chat_input'] = sg.I('Type your message...', size=(20, 1))
+        self.components['chat_input'] = sg.I('', key='-CHAT-' ,size=(20, 1))
         self.components['send_button'] = sg.B('Send')
+        self.controls += [chat.send]
         self.components['chat_log'] = sg.Multiline('Input Chat', size=(30, 5),  enter_submits=False, key='-QUERY-', do_not_clear=False)
 
         ### Extra Components ###
@@ -93,6 +99,7 @@ class DataView(object):
         self.components['column2'] = sg.Column(col2, background_color=BORDER_COLOR)
 
         ### DES Layout ###
+
         self.layout = [
             [self.components['header']],
             [self.components['new_button'], self.components['exit_button']],
@@ -100,6 +107,7 @@ class DataView(object):
         ]
     
     def draw_figure(self, canvas, figure):
+        print("Drawing Figure")
         figure_canvas_agg = FigureCanvasTkAgg(figure, canvas)
         figure_canvas_agg.draw()
         figure_canvas_agg.get_tk_widget().pack(side='top', fill='both', expand=1)
@@ -112,6 +120,7 @@ class DataView(object):
     
     def layout_show(self):
         if self.layout != []:
+            
             self.window = sg.Window('Data Explorer', self.layout, finalize=True, margins=(0,0), background_color="#C7D5E0", no_titlebar=False, resizable=True, right_click_menu=sg.MENU_RIGHT_CLICK_EXIT)
     
     def layout_input(self):
