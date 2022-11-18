@@ -72,10 +72,12 @@ class DataView(object):
 
         ### Chat Components ###
         self.components['chat_label'] = sg.T('Chat                                               ', font='Any 12', background_color=DARK_HEADER_COLOR, enable_events=True, grab=False)
-        self.components['chat_input'] = sg.I('', key='-CHAT-' ,size=(20, 1))
+        self.components['chat_display'] = sg.Multiline('',autoscroll=True,disabled=True, key='ChatDisplay',size=(20,10))
+        self.components['Message'] =sg.InputText('Type a message', key='Message',size=(20,50), do_not_clear=False)
         self.components['send_button'] = sg.B('Send')
         self.controls += [chat.send]
-        self.components['chat_log'] = sg.Multiline('Input Chat', size=(30, 5),  enter_submits=False, key='-QUERY-', do_not_clear=False)
+
+
 
         ### Extra Components ###
         self.components['blank'] = sg.T('', background_color=BORDER_COLOR)
@@ -86,8 +88,8 @@ class DataView(object):
             [self.components['figure_select']],
             [self.components['blank']],
             [self.components['chat_label']],
-            [self.components['chat_log']],
-            [self.components['chat_input'], self.components['send_button']]
+            [self.components['chat_display']],
+            [self.components['Message'], self.components['send_button']]
         ]
 
         col2 = [

@@ -5,21 +5,16 @@ import PySimpleGUI as sg
 
 def send( event, values,state):
     
+    
     keep_going = True
-    if event == "Send":   
-        print("Message Recieved")
-
+    if event == "Send":           
         from model.user_manager import UserManager
         a_user_manager = UserManager()
         user = UserManager().get_user()
-        
-        message = values['-CHAT-']
+
+        message = values['Message']
         print(f"{user}: {message}")
-
-        message_result = a_user_manager.chat(message)
-        print(f"Got login result: {message_result}")
-
-
+        
     else:
         keep_going = True
 

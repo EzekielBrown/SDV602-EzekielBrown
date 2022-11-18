@@ -35,7 +35,6 @@ class UserManager(object):
                                                 "Time": self.now_time_stamp()})
         UserManager.this_user_manager = self
 
-        # self.test_api()
 
     def register(self, user_id, password):
         api_result = self.jsnDrop.select("tblUser",f"PersonID = '{user_id}'")

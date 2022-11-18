@@ -1,1 +1,1 @@
-__all__ = ['ctrl_des', 'ctrl_login']
+__all__ = ['ctrl_des', 'ctrl_login', 'ctrl_chat']
