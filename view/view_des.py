@@ -46,9 +46,9 @@ class DataView(object):
         BORDER_COLOR = '#C7D5E0'
         DARK_HEADER_COLOR = '#1B2838'
 
+        ### Gets Username ###
         from model.user_manager import UserManager
         user = UserManager().get_user()
-
 
         ### Header Components ###
 
@@ -77,11 +77,8 @@ class DataView(object):
         self.components['send_button'] = sg.B('Send')
         self.controls += [chat.send]
 
-
-
         ### Extra Components ###
         self.components['blank'] = sg.T('', background_color=BORDER_COLOR)
-        
 
         col1 = [
             [self.components['input_label']],
@@ -101,13 +98,13 @@ class DataView(object):
         self.components['column2'] = sg.Column(col2, background_color=BORDER_COLOR)
 
         ### DES Layout ###
-
         self.layout = [
             [self.components['header']],
             [self.components['new_button'], self.components['exit_button']],
             [self.components['column1'], self.components['column2']],
         ]
     
+    #Draws the Graph
     def draw_figure(self, canvas, figure):
         print("Drawing Figure")
         figure_canvas_agg = FigureCanvasTkAgg(figure, canvas)
@@ -115,16 +112,18 @@ class DataView(object):
         figure_canvas_agg.get_tk_widget().pack(side='top', fill='both', expand=1)
         return figure_canvas_agg
 
+    #Deletes Graph
     def delete_figure_agg(self):
         if self.figure_agg:
             self.figure_agg.get_tk_widget().forget()
         plt.close('all')
     
+    #Displays Layout
     def layout_show(self):
         if self.layout != []:
-            
             self.window = sg.Window('Data Explorer', self.layout, finalize=True, margins=(0,0), background_color="#C7D5E0", no_titlebar=False, resizable=True, right_click_menu=sg.MENU_RIGHT_CLICK_EXIT)
     
+    #Allows Input
     def layout_input(self):
         if self.window != None:
             keep_going = True
