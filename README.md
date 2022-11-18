@@ -1,4 +1,4 @@
-# F1 Lap Data Analysis
+# F1 Drivers Championship Analysis
 ## Introduction
 This program is created by Ezekiel Brown for an assessment for sdv602.
 
