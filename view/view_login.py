@@ -43,13 +43,15 @@ class LoginView(object):
         ]
 
         self.components['header'] = sg.Frame('', header,   pad=(0,0), background_color=DARK_HEADER_COLOR,  expand_x=True, border_width=0, grab=True)
-        self.components['usr_label'] = sg.T(' Username ')
-        self.components['usr_entry'] = sg.In("", size=(40, 2))
-        self.components['pw_label'] = sg.T(' Password ')
-        self.components['pw_entry'] = sg.In('', password_char='*', size=(40, 2))
+        self.components['usr_label'] = sg.T('Username')
+        self.components['usr_entry'] = sg.In("", key="User", size=(40, 2))
+        self.components['pw_label'] = sg.T('Password')
+        self.components['pw_entry'] = sg.In('', key="Password", password_char='*', size=(40, 2))
         self.components['blank'] = sg.T('', background_color=BORDER_COLOR)
         self.components['login_button'] = sg.B('Log In')
         self.controls += [ctrl.login_button]
+        self.components['register_button'] = sg.B('Register')
+        self.controls += [ctrl.register_button]
         self.components['exit_button'] = sg.B('Exit')
         self.controls += [ctrl.exit_button]
         
@@ -59,7 +61,7 @@ class LoginView(object):
             [self.components['blank']],
             [self.components['usr_label'], self.components['usr_entry']],
             [self.components['pw_label'], self.components['pw_entry']],
-            [self.components['login_button'], self.components['exit_button']],
+            [self.components['login_button'], self.components['register_button'], self.components['exit_button']],
         ]
         
     def layout_show(self):

@@ -12,6 +12,7 @@ import os
 
 ### Custom Imports ###
 import controller.ctrl_des as ctrl
+import controller.ctrl_chat as chat
 
 '''
 The View for the design screens.
